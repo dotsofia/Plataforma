@@ -16,7 +16,6 @@ public class Transicao : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Carnes");
-        print(gos.Length);
         if(gos.Length == 0){
             if (scene.name == "cena1"){
                 SceneManager.LoadScene("cena2");

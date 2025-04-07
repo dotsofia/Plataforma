@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         gcPlayer = GameControlle.gc;
+        gcPlayer.vidas = 3;
         gcPlayer.carnes = 0;
         playerAnim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
@@ -71,6 +73,16 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
             gcPlayer.carnes++;
             gcPlayer.carneText.text = gcPlayer.carnes.ToString();
+        } else if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            gcPlayer.vidas--;
+            gcPlayer.vidasText.text = gcPlayer.vidas.ToString();
+            Destroy(collision.gameObject);
+
+            if (gcPlayer.vidas <= 0)
+            {
+                SceneManager.LoadScene("derrota");
+            }
         }
     }
 }

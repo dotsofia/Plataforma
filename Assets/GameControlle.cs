@@ -7,7 +7,10 @@ public class GameControlle : MonoBehaviour
 {
     public static GameControlle gc;
     public Text carneText;
+    public Text vidasText;
     public int carnes;
+    public int vidas;
+
     void Awake()
     {
         if (gc == null){
